@@ -1,13 +1,8 @@
-FROM n8nio/n8n:1.40.0
+FROM n8nio/n8n:1.99.1
 
-# Switch to root to install packages
+# Install required external Node module(s)
 USER root
-
-# Install googleapis directly inside the image's /usr/local/lib
 RUN npm install googleapis
 
-# Allow the Code node to access external modules
-ENV N8N_NODE_FUNCTION_ALLOW_EXTERNAL=googleapis
-
-# Revert to n8n user
+# Switch back to n8n user for security
 USER node
